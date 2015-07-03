@@ -19,7 +19,7 @@ ReadInputData(infile, iHoursToAdd=0, fAATAMS=FALSE, fVemcoDualSensor=FALSE,
   \item{TRANSMITTERID }{a numeric vector giving the identity of each transmitter (\code{ID})}
   \item{SENSOR1 }{a numeric vector containing the value of the environmental sensor (i.e. temperature or depth) at the time of detection}
   \item{UNITS1 }{a character vector containing the units of each sensor value (e.g. \code{m}}
-  \item{TRANSMITTERID }{a character vector containing the factory assigned receiver serial number (\code{Receiver S/N})}
+  \item{TRANSMITTERID }{a character vector containing the factory assigned transmitter tag id}
   \item{RECEIVERID }{a character vector containing the factory assigned receiver serial number (\code{Receiver S/N})}
   \item{STATIONNAME }{a character vector containing the user defined station name}
 }

@@ -16,6 +16,17 @@ a data frame containing VTrack archive data, this archive is created using the R
 }
 }
 
+\value{
+  \item{RECEIVERID }{a character vector containing the factory assigned receiver serial number}
+  \item{STATIONNAME }{a character vector containing the user defined station name}
+  \item{FIRSTDETECT }{a vector of class POSIXct of the time of the first location fix}
+  \item{NODETECTS }{a numeric vector giving the number of transmitter location fixes}  
+  \item{LASTDETECT }{a vector of class POSIXct of the time of the last location fix}
+  \item{NOTRANSMITTER }{a numeric vector giving the number of unique transmitter ids detected}  
+}
+\author{Ross Dwyer}
+
+
 \examples{
 data(crocs)
 # Load the crocodile data in the VTrack archive format

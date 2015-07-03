@@ -50,10 +50,19 @@
                             dateformat = NULL,
                             sVemcoFormat='1.0')
     
+    # Set working directory (in this case a temporary directory)
+    setwd(tempdir())
+    # or alternatively to your Desktop on Mac OS
+    # setwd("~/Desktop")
+    
     # Run the function to generate the KML
     GenerateAnimationKMLFile_Multitag(Vcrocs,
-                                  PointsDirect_crocs,
-                                  "Croc Track.kml")  }
+                                      PointsDirect_crocs,
+                                      "Croc Multi.kml")  
+                                      
+    # This file can be found within the tempdir() directory on your computer. 
+    # Double-click on the .kml file to open in Google Earth
+}
 }
 \keyword{behaviour}
 \keyword{spatial}

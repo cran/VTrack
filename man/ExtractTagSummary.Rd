@@ -16,6 +16,18 @@ a data frame containing VTrack archive data, this archive is created using the R
 }
 }
 
+\value{
+  \item{TRANSMITTERID }{a character vector containing the factory assigned transmitter tag id}
+  \item{FIRSTDETECT }{a vector of class POSIXct of the time of the first location fix}
+  \item{LASTDETECT }{a vector of class POSIXct of the time of the last location fix}
+  \item{NODETECTS }{a numeric vector giving the number of transmitter location fixes}    
+  \item{STARTREC }{a character vector containing the first receiver at which the transmitter was detected}
+  \item{ENDREC }{a character vector containing the last receiver at which the transmitter was detected}
+  \item{NORECS }{a numeric vector giving the number of unique receivers at which the transmitter was detected}  
+}
+
+\author{Ross Dwyer}
+
 \examples{
 # Load the crocodile data in the VTrack 1.0 archive format
 #  adding 10 hours to convert from UTC 

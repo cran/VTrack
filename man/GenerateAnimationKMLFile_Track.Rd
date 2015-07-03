@@ -60,16 +60,18 @@ data(PointsDirect_crocs)
 
 # Set working directory (in this case a temporary directory)
 setwd(tempdir())
+# or alternatively to your Desktop on Mac OS
+# setwd("~/Desktop")
 
 (TransmitterList <- ExtractUniqueValues(Vcrocs,2)) # Extract the transmitter names
 TransmitterList[1] # Let's create the track for this tag
 
 # Run the function to generate the KML for a single transmitter
-GenerateAnimationKMLFile_Track(Vcrocs,
-                               TransmitterList[1],
-                               XYVR2.Pointsfile,
-                               "Track1.kml",
-                               "cc69deb3")
+GenerateAnimationKMLFile_Track(Vcrocs, # VTrack archive file
+                               TransmitterList[1], # Transmitter id
+                               PointsDirect_crocs, # points file
+                               "Track1.kml", # file name
+                               "cc69deb3") # colour of the track
 
 # This file can be found within the tempdir() directory on your computer. 
 # Double-click on the .kml file to open in Google Earth
