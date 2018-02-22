@@ -34,51 +34,5 @@ Ross Dwyer, Mathew Watts, Hamish Campbell}
 \code{\link{RunResidenceExtraction}}
 }
 
-\examples{
-# This function runs within the RunResidenceExtraction function when 
-# a distance matrix is provided by the user.
-
-# Extract residence events at RECEIVERS from the VTrack-transformed 
-# saltwater crocodile archive
-
-# Load the crocodile data into the VTrack archive
-data(crocs)  
-Vcrocs <- ReadInputData(infile=crocs,
-                        iHoursToAdd=10,
-                        fAATAMS=FALSE,
-                        fVemcoDualSensor=FALSE,
-                        dateformat = NULL,
-                        sVemcoFormat='1.0')       
-
-# Extract data for only the transmitter #138
-T138 <- ExtractData(Vcrocs, 
-                    sQueryTransmitterList = 138)
-
-# Extract residence and non residence events using receiver data
-# 	Minimum number of detections to register as a residence
-# 	event = 2  
-# 	Min time period between detections before residence event
-# 	recorded = 43200 secs (12 hours)
-T139Res <- RunResidenceExtraction(sInputFile=T138, 
-                                 sLocation="RECEIVERID",
-                                 iResidenceThreshold=2,
-                                 iTimeThreshold=43200,
-                                 sDistanceMatrix=NULL)
-
-# The residences event table
-T139resid <- T139Res$residences
-
-# Generate the circuitous distance matrix
-data(PointsCircuitous_crocs)
-CircuitousDM <- GenerateCircuitousDistance(PointsCircuitous_crocs)
-
-# Ensure there is only 1 Transmitter in dataset (if not, run the function within a loop)
-length(unique(T139resid$TRANSMITTERID))
-
-# Run the non-residence function
-NonResidenceExtractId(sResidenceEventFile=T139resid,
-                      sDistanceMatrix=CircuitousDM)
-}
-
 \keyword{behaviour}
 \keyword{spatial}

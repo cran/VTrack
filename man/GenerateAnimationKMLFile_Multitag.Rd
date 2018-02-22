@@ -7,7 +7,8 @@
   This function creates a Keyhole Markup Language (KML) animation of transmitter detections at receivers that can be displayed in Google Earth. The animation shows the number of transmitters detected within the detection field of a receiver on a given day. Users can adjust the time slider to visualise individual time periods for display. 
 }
 \usage{
-  GenerateAnimationKMLFile_Multitag(sInputFile,sPointsFile,sOutputFile)
+  GenerateAnimationKMLFile_Multitag(sInputFile,sPointsFile,sOutputFile,
+  sLocation="RECEIVERID")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -15,12 +16,13 @@
     a data frame containing VTrack archive data, this archive is created using the ReadInputData function
   }
   \item{sPointsFile }{
-    a data frame containing the RECEIVERID, the coordinates and the detection RADIUS in meters. This should be in the format LOCATION, LATITUDE, LONGITUDE, RADIUS
+    a data frame containing the RECEIVERID or STATIONNAME, the coordinates and the detection RADIUS in meters. This should be in the format LOCATION, LATITUDE, LONGITUDE, RADIUS
   }
   \item{sOutputFile }{
     a string detailing the location and name of the output kml file to be created
   }
-}
+    \item{sLocation }{the location at which we wish to visualise our movement events (i.e. \code{RECEIVERID} or \code{STATIONNAME}).
+}}
 \details{
   the output is a .kml that can be viewed as an animation in Google Earth
 }
@@ -30,7 +32,7 @@
 }
 
 \author{
-  Ross Dwyer, Matthew Watts, Hamish Campbell
+  Ross Dwyer
 }
 \examples{
   
@@ -45,8 +47,6 @@
     
     Vcrocs <- ReadInputData(infile=crocs,
                             iHoursToAdd=10,
-                            fAATAMS=FALSE,
-                            fVemcoDualSensor=FALSE,
                             dateformat = NULL,
                             sVemcoFormat='1.0')
     
@@ -58,7 +58,8 @@
     # Run the function to generate the KML
     GenerateAnimationKMLFile_Multitag(Vcrocs,
                                       PointsDirect_crocs,
-                                      "Croc Multi.kml")  
+                                      "Croc Multi.kml",
+                                      sLocation="RECEIVERID")
                                       
     # This file can be found within the tempdir() directory on your computer. 
     # Double-click on the .kml file to open in Google Earth

@@ -4,26 +4,28 @@
 Function to Extract Summary Data for each Transmitter in the File 
 }
 \description{
-This function extracts summary data for each transmitter in the File 
+This function extracts summary data for each transmitter in the file 
 }
 \usage{
-ExtractTagSummary(sInputFile)
+ExtractTagSummary(sInputFile,sLocation)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{sInputFile }{
 a data frame containing VTrack archive data, this archive is created using the ReadInputData function
 }
+  \item{sLocation }{the location at which we wish to extract our tag summary data (i.e. \code{RECEIVERID} or \code{STATIONNAME}). The default is \code{RECEIVERID}}
 }
+
 
 \value{
   \item{TRANSMITTERID }{a character vector containing the factory assigned transmitter tag id}
   \item{FIRSTDETECT }{a vector of class POSIXct of the time of the first location fix}
   \item{LASTDETECT }{a vector of class POSIXct of the time of the last location fix}
   \item{NODETECTS }{a numeric vector giving the number of transmitter location fixes}    
-  \item{STARTREC }{a character vector containing the first receiver at which the transmitter was detected}
-  \item{ENDREC }{a character vector containing the last receiver at which the transmitter was detected}
-  \item{NORECS }{a numeric vector giving the number of unique receivers at which the transmitter was detected}  
+  \item{STARTLOC }{a character vector containing the first location at which the transmitter was detected}
+  \item{ENDLOC }{a character vector containing the last location at which the transmitter was detected}
+  \item{NOLOCS }{a numeric vector giving the number of unique receivers or stations at which the transmitter was detected}  
 }
 
 \author{Ross Dwyer}
@@ -34,13 +36,14 @@ a data frame containing VTrack archive data, this archive is created using the R
 data(crocs)
 Vcrocs <- ReadInputData(infile=crocs,
                         iHoursToAdd=10,
-                        fAATAMS=FALSE,
-                        fVemcoDualSensor=FALSE,
                         dateformat = NULL,
                         sVemcoFormat='1.0')
 
-# Extract summary table of transmitters in the file
-ExtractTagSummary(Vcrocs)
+# Extract summary table of transmitters in the file according to receiver serial numbers 
+ExtractTagSummary(Vcrocs,sLocation="RECEIVERID")
+
+# Extract summary table of transmitters in the file according to station names 
+ExtractTagSummary(Vcrocs,sLocation="STATIONNAME")
 }
 
 \details{

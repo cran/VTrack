@@ -8,7 +8,7 @@ This function creates a Keyhole Markup Language (KML) animation of horizontal mo
 }
 \usage{
 GenerateAnimationKMLFile_Track(sInputFile, sid, sPointsFile, 
-                            sOutputFile, sTrackColour)
+                            sOutputFile, sTrackColour,sLocation)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,7 +27,8 @@ a string detailing the location and name of the output kml file to be created
   \item{sTrackColour }{
 colour of the tracks in the output .kml
 }
-}
+  \item{sLocation }{the location at which we wish to visualise our tracks (i.e. \code{RECEIVERID} or \code{STATIONNAME}). 
+}}
 \details{
 the output is a .kml that can be viewed as an animation in Google Earth
 }
@@ -37,7 +38,7 @@ the output is a .kml that can be viewed as an animation in Google Earth
 }
 
 \author{
-Ross Dwyer, Matthew Watts, Hamish Campbell
+Ross Dwyer
 }
 \examples{
 
@@ -50,12 +51,10 @@ Ross Dwyer, Matthew Watts, Hamish Campbell
 data(crocs)
 Vcrocs <- ReadInputData(infile=crocs,
                         iHoursToAdd=10,
-                        fAATAMS=FALSE,
-                        fVemcoDualSensor=FALSE,
                         dateformat = NULL,
                         sVemcoFormat='1.0')
 
-# Load Wenlock points file and generate circuitous distance matrix
+# Load Wenlock points file
 data(PointsDirect_crocs)
 
 # Set working directory (in this case a temporary directory)
@@ -71,7 +70,8 @@ GenerateAnimationKMLFile_Track(Vcrocs, # VTrack archive file
                                TransmitterList[1], # Transmitter id
                                PointsDirect_crocs, # points file
                                "Track1.kml", # file name
-                               "cc69deb3") # colour of the track
+                               "cc69deb3", # colour of the track
+                               sLocation="RECEIVERID")
 
 # This file can be found within the tempdir() directory on your computer. 
 # Double-click on the .kml file to open in Google Earth

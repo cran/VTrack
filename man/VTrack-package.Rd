@@ -12,8 +12,8 @@ The package \code{VTrack} was designed by researchers at the University of Queen
 \tabular{ll}{
 Package: \tab VTrack\cr
 Type: \tab Package\cr
-Version: \tab 1.11\cr
-Date: \tab 2015-07-03\cr
+Version: \tab 1.21\cr
+Date: \tab 2018-02-22\cr
 License: \tab GPL(>=2)\cr
 }
 

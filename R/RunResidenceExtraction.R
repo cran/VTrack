@@ -1,13 +1,15 @@
 RunResidenceExtraction <-
-function(sInputFile,sLocation,iResidenceThreshold,iTimeThreshold,sDistanceMatrix=NULL)
+function(sInputFile,sLocation,iResidenceThreshold,iTimeThreshold,sDistanceMatrix=NULL,iCores=2)
 {
   i <- NULL 
-#  if(Sys.info()["sysname"]=="Darwin"){
-#    registerDoMC()
-#  }else{
-  registerDoParallel(cl=(cl <- makeCluster(2)))
-#  }
-    
+
+  #iCores <- parallel::detectCores()
+
+  cl <- makeCluster(iCores)
+  registerDoParallel(cl)
+  #on.exit(stopCluster(cl))
+  
+
   # Check data are in chronological order and duplicates-free
   sInputFile <- unique(sInputFile[order(as.character(sInputFile$DATETIME)),]) 
   
@@ -329,5 +331,6 @@ function(sInputFile,sLocation,iResidenceThreshold,iTimeThreshold,sDistanceMatrix
   names(ilist2$nonresidences)[6] <- paste(sLocation,"2",sep="")
   return(as.list(ilist2))
 
-if (.Platform$OS == "windows") stopCluster(cl)
+  stopImplicitCluster()
+  #registerDoSEQ(cl)
 }

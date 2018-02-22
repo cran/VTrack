@@ -1,13 +1,13 @@
-\name{ExtractRecSummary}
-\alias{ExtractRecSummary}
+\name{ExtractStationSummary}
+\alias{ExtractStationSummary}
 \title{
-Extended Function to Extract Summary Data for each Receiver Serial Number in the File 
+Extended Function to Extract Summary Data for each Station Name in the File 
 }
 \description{
-This function extracts summary data for each receiver serial number in the file
+This function extracts summary data for each station name in the file
 }
 \usage{
-ExtractRecSummary(sInputFile)
+ExtractStationSummary(sInputFile)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -36,8 +36,8 @@ Vcrocs <- ReadInputData(infile=crocs,
                         dateformat = NULL,
                         sVemcoFormat='1.0')
 
-# Extract summary table of receivers in the file
-ExtractRecSummary(Vcrocs)
+# Extract summary table of receiver sstations in the file
+ExtractStationSummary(Vcrocs)
 }
 
 \details{

@@ -60,24 +60,11 @@ data(crocs)
 # Convert data into the VTrack archive format
 Vcrocs <- ReadInputData(infile=crocs,
                         iHoursToAdd=10,
-                        fAATAMS=FALSE,
-                        fVemcoDualSensor=FALSE,
                         dateformat = NULL,
                         sVemcoFormat='1.0')
 
 # Extract list of transmitters from test archive 1
 (TransmitterList <- ExtractUniqueValues(Vcrocs,2))  
-
-
-# Extract data from an archive only for the receivers listed.
-R103555 <- ExtractData(Vcrocs,
-                  sQueryReceiverList = 10355)
-
-# Extract depth only data for a certain time period.
-Vcrocs_Depth <- ExtractData(Vcrocs,
-	sQueryDataType = "m",
-	sQuerySTARTTIME = "2008-08-01 21:00:00",
-	sQueryENDTIME = "2009-10-31 23:03:00")  
 
 # Plot the detections against time for each TRANSMITTERID
 par(mfrow=c(1,1),las=1,bty="l")
@@ -92,15 +79,6 @@ axis(side=2, at=seq(1,length(TransmitterList),1),
 # For TRANSMITTERID 139 plot the detections against time for each RECEIVERID 
 par(mfrow=c(1,1),las=1,bty="l")
 T139 <- ExtractData(Vcrocs,sQueryTransmitterList = c("139"))
-T139_R <- ExtractUniqueValues(T139,5)
-plot(as.Date(T139$DATETIME),
-	as.numeric(as.factor(
-	as.numeric(as.character(T139$RECEIVERID)))),
-	ylab="RECEIVERID",xlab="DATETIME",
-	yaxt="n",pch=16,cex.axis=0.9,cex=0.7,
-	main=unique(T139[,2]))
-axis(side=2,las=1, at=seq(1,length(T139_R),1),cex.axis=0.7,
-     labels = T139_R[order(as.numeric(T139_R))])
 
 # Extract data from TRANSMITTERID 139 and plot raw sensor data
 par(mfrow=c(1,1),las=1,bty="l")
@@ -108,6 +86,13 @@ plot(T139$SENSOR1~
 	T139$DATETIME,xlab="Date",
 	ylab="Depth (m)",main=unique(T139[,2]),
 	pch=16,cex=0.7)
+
+# Extract depth only data for a certain time period.
+#Vcrocs_Depth <- ExtractData(Vcrocs,
+#	sQueryDataType = "m",
+#	sQuerySTARTTIME = "2008-08-01 21:00:00",
+#	sQueryENDTIME = "2009-10-31 23:03:00")  
+
 }
 
 \keyword{archive}

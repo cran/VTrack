@@ -6,7 +6,7 @@ Events when the transmitter remained within the detection field of a given recei
 }
 \usage{
 RunResidenceExtraction(sInputFile, sLocation, iResidenceThreshold, iTimeThreshold, 
-    sDistanceMatrix = NULL)
+    sDistanceMatrix = NULL,iCores = 2)
 }
 \arguments{
   \item{sInputFile }{a data frame containing VTrack archive data, this archive is created using the \code{\link{ReadInputData}} function}
@@ -15,6 +15,8 @@ RunResidenceExtraction(sInputFile, sLocation, iResidenceThreshold, iTimeThreshol
   \item{iTimeThreshold }{the minimum time period in seconds between pings before a residence event is recorded}
   \item{sDistanceMatrix }{an optional two dimensional array containing the distances between a set of points. This can be the distances between each receiver or between each station. The first column in this matrix must contain the names of the receivers/stations. The diagonal of the distance matrix should be printed as \code{0} if appropriate and the upper triange of the distance matrix should also be calculated. Row 1 must contain the names of the corresponding receivers/stations and column 1 should be named \code{DM}. If a distance matrix is not available, Distances moved and the rate of movement (\code{ROM}) are returned as \code{0} in the \code{nonresidences} event table
 }
+  \item{iCores }{the the number of cores with which to run the function in parallel. Default is 2.}
+
 }
 \value{
 A \code{list} object containing 3 tables. In the \code{residenceslog} table:
@@ -61,8 +63,6 @@ In the \code{nonresidences} event table:
 data(crocs)
 Vcrocs <- ReadInputData(infile=crocs,
                         iHoursToAdd=10,
-                        fAATAMS=FALSE,
-                        fVemcoDualSensor=FALSE,
                         dateformat = NULL,
                         sVemcoFormat='1.0')
 

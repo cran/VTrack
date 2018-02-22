@@ -1,8 +1,6 @@
 # Import all packages listed as Imports or Depends
 import(
-  foreach,
-  parallel,
-  doParallel)
+  foreach)
 importFrom(plotKML,kml)
 importFrom(sp,SpatialPoints)
 importFrom(sp,proj4string)
@@ -11,13 +9,29 @@ importFrom(stats,aggregate)
 importFrom(stats,sd)
 importFrom(utils,read.csv)
 importFrom(stats,na.omit)
+importFrom(parallel,makeCluster)
+importFrom(doParallel,registerDoParallel)
+importFrom(doParallel,stopImplicitCluster)
+importFrom(parallel,stopCluster)
+importFrom(sp,coordinates)
+importFrom(sp,CRS)
+importFrom(sp,spDists)
+importFrom(sp,SpatialLinesLengths)
+importFrom(gdistance,shortestPath)
+importFrom(raster,crs)
+importFrom(plyr,ddply)
+importFrom(plyr,dlply)
+importFrom(plyr,summarize)
+importFrom(lubridate,ymd_hms)
 
 # Export all external functions
 export(
+  COA,
   ComputeAzimuth,
   ComputeDistance,
   ExtractData,
   ExtractRecSummary,
+  ExtractStationSummary,
   ExtractTagSummary,
   ExtractUniqueValues,
   GenerateAnimationKMLFile,
@@ -25,6 +39,7 @@ export(
   GenerateAnimationKMLFile_Track,
   GenerateCircuitousDistance,
   GenerateDirectDistance,
+  GenerateLeastCostDistance,
   NonResidenceExtractId,
   ReadInputData,
   ReturnVR2Distance,
